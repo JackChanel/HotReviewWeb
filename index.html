@@ -1,10 +1,128 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>233</title>
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>留言热评榜 - HotReview</title>
+		<script src="./js/global.js" type="module" charset="utf-8"></script>
+		<link rel="stylesheet/less" href="./css/index.less">
+
 	</head>
 	<body>
-		
+		<!-- 头部导航栏 -->
+		<header>
+			<!-- logo -->
+			<div class="inner">
+				<div class="logo">
+					<div class="logobox">
+						<img src="./static/img/logo.svg">
+					</div>
+				</div>
+			</div>
+			<!-- navigate -->
+			<div class="inner">
+				<div class="navigate">
+					<h1 class="box">首页</h1>
+					<h1 class="box">发现</h1>
+					<h1 class="box">留言</h1>
+				</div>
+			</div>
+			<!-- searchbox -->
+			<div class="inner">
+				<div class="searchbox">
+					<div class="searchbg"></div>
+					<div class="hover">
+						<input type="text" placeholder="搜索留言、热评和一切你感兴趣的">
+						<button class="search_ico"></button>
+					</div>
+				</div>
+			</div>
+
+			<!-- usercontrol -->
+			<div class="inner">
+				<div class="usercontrol">
+					<div class="avatar">
+						<img src="./static/img/ava1.jpg" alt="avatar" height="45">
+					</div>
+					<div class="alarm">
+						<img src="static/img/alarm.svg" alt="alm" height="30">
+					</div>
+					<div class="msg">
+						<img src="./static/img/msg.png" alt="msg" height="30">
+					</div>
+				</div>
+				<a href="" id="username" style="color:yellow; font-weight:bold; font-size: large;">注册</a>
+			</div>
+		</header>
+
+		<!-- 页面内容 -->
+		<div class="container" id="app">
+			<section>
+				<div class="head">
+					<h2 class="box" style="color: #c62f2f;">关注</h2>
+					<h2 class="box">热榜</h2>
+					<h2 class="box">推荐</h2>
+				</div>
+				<div class="containbox">
+					<div class="card" v-for="(item, index) in reviewList">
+						<div class="drawarea">
+							<div class="top">
+								<img :src="item.avatar" alt="" class="avatar">
+								<p class="nickname">{{item.nickname}}</p>
+							</div>
+							<div class="content" style="font-size: 20px; padding: 10px;">
+								{{item.context}}
+							</div>
+							<div class="actions">
+
+								<div class="iconItem">
+									<div class="icon">
+										&#xe60a;
+									</div>
+									<p class="text">收藏</p>
+								</div>
+
+								<div class="iconItem">
+									<div class="icon">
+										&#xe600;
+									</div>
+									<p class="text">喜欢</p>
+								</div>
+
+								<div class="iconItem">
+									<div class="icon">
+										&#xe609;
+									</div>
+									<p class="text">评论</p>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<aside>
+			</aside>
+		</div>
+
 	</body>
+
+
+	<script type="module">
+		import review from './data/review.js'
+		const app = new Vue({
+			el: '#app',
+			
+			data: {
+				reviewList:[],
+			},
+			mounted(){
+				console.log(review)
+				this.reviewList = review.List
+			}
+			
+		})
+		
+	</script>
 </html>

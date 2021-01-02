@@ -1,0 +1,18 @@
+{
+  "name": "hotreviewweb",
+  "version": "1.0.0",
+  "description": "#### 介绍 一个简单的留言板网站，主要使用原生三件套开发，辅助有Vue等支持。 Web前端期末验收项目\r gitee page演示地址： https://labraff.gitee.io/hot-review-web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "less": "^4.0.0",
+    "vue": "^2.6.12"
+  }
+}
