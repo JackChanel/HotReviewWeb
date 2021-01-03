@@ -1,6 +1,6 @@
 /* normalize 基本样式修正 */
 @import("../node_modules/normalize.css/normalize.css");
-
+@import url("./animation.css");
 @font-face {
   font-family: 'iconfont';  /* project id 2305389 */
   src: url('//at.alicdn.com/t/font_2305389_zeb2erqsmem.eot');

@@ -65,17 +65,23 @@ header .inner .logo p {
 header .inner .navigate {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-}
-
-header .inner .navigate .box {
-  /* border: blue 2px solid; */
-  width: 121px;
-  text-align: center;
-  font-size: 25px;
-  color: white;
-  font-weight: inherit;
-  letter-spacing: 2px;
-
+	.box {
+		cursor: pointer;
+	  width: 60px;
+		margin: 0rem 1.25rem;
+	  text-align: center;
+	  font-size: 25px;
+	  color: white;
+	  font-weight: inherit;
+	  letter-spacing: 2px;
+	}
+	.box:hover{
+		color: #d6d6d6; 
+	}
+	.box-select{
+		font-weight: 900;
+		border-bottom: #fff solid 4px;
+	}
 }
 
 header .inner .searchbox {
@@ -130,22 +136,94 @@ header .inner .searchbox input {
 header .inner .usercontrol {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+	.loginBtn{
+		cursor: pointer;
+		background-color: #c74242;
+		width: 80px;
+		height: 40px;
+		border-radius: 5px;
+		border: solid #e7e7e7 2px;
+		color: #fff;
+		display: flex;
+		.btnText{
+			margin: auto;
+			font-weight: 900;
+		}
+	}
 }
 
 header .inner .usercontrol .avatar {
+	cursor: pointer;
   margin: 0px 2px;
   width: 50px;
   height: 50px;
-  /* border: blue 2px solid; */
   display: flex;
   align-items: center;
+	.dropBox{
+		animation: drop 0.3s;
+		display: none;
+		background-color: #ffffff;
+		border-radius: 10%;
+		border: solid #ebebeb 3px;
+		cursor: default;
+		position: fixed;
+		transform:translateX(-35%) translateY(-5%);
+		-webkit-transform: translateX(-35%) translateY(-5%);
+		width: 140px;
+		min-height: 90px; 
+		margin-top: 160px; 
+		z-index: 10;
+		ul li{
+			list-style: none;
+			font-family: "microsoft yahei";
+			font-weight: 900;
+			margin: auto;
+			cursor: pointer;
+
+		}
+		ul li:hover{
+			color: #cb1313;
+		}
+	}
 }
+
+header .inner .usercontrol .avatar:hover{
+	cursor: pointer;
+	margin: 0px 2px;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	.dropBox{
+		background-color: #ffffff;
+		border-radius: 10%;
+		border: solid #ebebeb 3px;
+		display: block;
+		cursor: default;
+		position: fixed;
+		transform:translateX(-35%) translateY(-5%);
+		-webkit-transform: translateX(-35%) translateY(-5%);
+		margin-top: 160px; 
+		z-index: 10;
+		ul {
+			display: flex;
+		}
+		ul li{
+			font-family: "microsoft yahei";
+			font-weight: 900;
+			margin: auto;
+			cursor: pointer;
+			list-style: none;
+		}
+		ul li:hover{
+			color: #cb1313;
+		}
+	}
+}
+
 
 header .inner .usercontrol .alarm {
   margin: 0px 2px;
-  // width: 45px;
-  // height: 30px;
-  /* border: blue 2px solid; */
   display: flex;
   padding-left: 5px;
   align-items: center;
@@ -169,7 +247,7 @@ header .inner .usercontrol .msg {
     width: 830px;
     box-shadow: 1px 1px 1px 1px silver;
     // background-color: blueviolet;
-    margin-left: 150px;
+    margin-left: 300px;
 
     .head {
       width: auto;
@@ -181,8 +259,10 @@ header .inner .usercontrol .msg {
       border-left: none;
       border-right: none;
       grid-template-columns: 90px 90px 90px;
-
       .box {
+				cursor: pointer;
+				width: 3.125rem;
+				margin-left: 1.25rem;
         display: flex;
         justify-content: center;
         font-size: large;
@@ -191,6 +271,9 @@ header .inner .usercontrol .msg {
         // border: black 1px solid;
         height: 60px;
       }
+			.box:hover{
+				color: #fd3b3b;
+			}
     }
 
     .containbox {
@@ -245,11 +328,70 @@ header .inner .usercontrol .msg {
             display: flex;
             font-family: iconfont;
             height: 40px;
-
+						justify-content:space-between
+						
           }
+					
+					.commentbox{
+						animation:1s dropComment forwards;
+						border: #d0d0d0 1px solid;
+						padding-bottom: 10px;
+						.title{
+							margin: 10px 20px;
+							font-weight: 600;
+							font-size: 17px;
+						}
+						.subTitle{
+							background-color: #f6f6f6;
+							padding: 10px 20px;
+							font-weight: 600;
+							color: #808080;
+							font-size: 16px;
+						}
+						.commentList{
+							font-size: smaller;
+
+							.c-userinfo{
+								display: flex;
+								padding: 10px;
+								.avatar{
+									
+								}
+								.username{
+									margin: auto;
+									margin-left: 10px;
+								}
+							}
+							.c-context{
+								margin-left: 50px;
+							}
+							.c-control{
+								margin-left: 50px;
+								
+							}
+						}
+					
+						.moreComment{
+							display: block;
+							margin-top: 10px;
+							margin-left: 50px;
+							font-size: smaller;
+							color: #175199;
+							text-decoration:underline;
+							cursor: pointer;
+						}
+					}
         }
       }
-    }
+			.no-more{
+				margin-top: 30px;
+				width: 750px;
+				font-size: small;
+				color: #6b6b6b;
+				height: 50px;
+				padding: auto;
+			}
+		}
   }
 
   aside {
@@ -261,6 +403,9 @@ header .inner .usercontrol .msg {
   }
 	
 	.iconItem{
+		display: none;
+		z-index: 100;
+		cursor: pointer;
 		margin: 0.3125rem 0.625rem;
 		
 		display: flex;
@@ -268,7 +413,8 @@ header .inner .usercontrol .msg {
 			font-size: 1.25rem;
 		}
 		.text{
-			
+			padding: 0rem 0.3125rem;
 		}
 	}
+	
 }

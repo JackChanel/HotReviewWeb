@@ -1,0 +1,76 @@
+@keyframes drop {
+	from {
+		min-width: 0px;
+		min-height: 0px;
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+		min-width: 140px;
+		min-height: 90px;
+	}
+}
+
+@-webkit-keyframes drop {
+	from {
+		min-width: 0px;
+		min-height: 0px;
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+		min-width: 140px;
+		min-height: 90px;
+	}
+}
+
+@keyframes dropComment {
+	from {
+		min-width: 0px;
+		min-height: 0px;
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+		min-width: 13.75rem;
+		min-height: 6.25rem;
+	}
+}
+
+@-webkit-keyframes dropComment {
+	from {
+		opacity: 0;
+		min-width: 0px;
+		min-height: 0px;
+	}
+
+	to {
+		opacity: 1;
+		min-width: 13.75rem;
+		min-height: 6.25rem;
+	}
+}
+
+
+@keyframes sidebox {
+	from {
+		right: -333px;
+	}
+
+	to {
+		right: -120px;
+	}
+}
+
+@-webkit-keyframes sidebox {
+	from {
+		right: -333px;
+	}
+
+	to {
+		right: -120px;
+	}
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>我的收藏</title>
+		<script src="../js/global.js" type="module" charset="utf-8"></script>
+		<link rel="stylesheet/less" href="../css/myStar.less">
+	</head>
+	<body>
+		<div class="bg">
+		</div>
+		<div id="app">
+			<div class="title">
+				<div style="margin: auto;">
+					留言热评榜 —— 我的收藏
+				</div>
+			</div>
+
+			<div class="containbox">
+				<div class="card" v-for="(item, index) in starList">
+					<div class="top">
+						<img :src="item.avatar" alt="" class="avatar" height="50px">
+						<p class="nickname">{{item.nickname}}</p>
+					</div>
+					<div class="content" style="font-size: 20px; padding: 10px;">
+						{{item.context}}
+					</div>
+				</div>
+			</div>
+
+
+			<div class="sidebox">
+				<div style="display: flex;">
+					<div class="icon">+</div>
+					<img class="item" id="musicCtl" style="	
+						-webkit-animation: fa-spin 5s infinite linear;
+						animation: fa-spin 5s infinite linear;
+						cursor: pointer;"
+					 src="https://labraff-img.oss-cn-hangzhou.aliyuncs.com/HotReview/Music.png" height="50px" @click="musicControl()">
+
+					<img class="item" src="https://labraff-img.oss-cn-hangzhou.aliyuncs.com/HotReview/explore.png" height="50px">
+					<img class="item" src="https://labraff-img.oss-cn-hangzhou.aliyuncs.com/HotReview/user.png" height="50px">
+					<div class="item">占位</div>
+					<div class="item">占位</div>
+				</div>
+				<audio id="music" style="margin-left: 10px;" src="https://labraff-img.oss-cn-hangzhou.aliyuncs.com/music/obj%252FwonDkMOGw6XDiTHCmMOi%252F2817011095%252F9faf%252F1b7c%252Fb082%252F143718dfcacab445b8dc6d825a691995.m4a"
+				 controls="controls"></audio>
+			</div>
+		</div>
+	</body>
+	<script type="module">
+
+		import review from '../data/review.js'
+		const app = new Vue({
+			el: '#app',
+			data:{
+				starList:[],
+				showIndex:-1,
+				musicStatus:false
+			},
+			mounted(){
+				let starList = JSON.parse(localStorage.getItem("starList"))
+				console.log(review)
+				for(let star of starList){
+					for(let item of review.List){
+						if(item.id == star)this.starList.push(item)
+					}
+				}
+				document.getElementById('musicCtl').click()				
+			},
+			methods:{
+				musicControl(){
+					let music = document.getElementById("music");
+					if(this.musicStatus){
+						console.log('on->off')
+						music.pause()
+					}else{
+						console.log('off->on')
+						music.play()
+					}
+					this.musicStatus=!this.musicStatus
+				}
+			}
+		})
+		
+		let musicOn = true;
+		
+		
+	</script>
+</html>

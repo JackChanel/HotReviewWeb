@@ -4,106 +4,159 @@
 		<title>留言热评榜 - HotReview</title>
 		<script src="./js/global.js" type="module" charset="utf-8"></script>
 		<link rel="stylesheet/less" href="./css/index.less">
-
 	</head>
 	<body>
-		<!-- 头部导航栏 -->
-		<header>
-			<!-- logo -->
-			<div class="inner">
-				<div class="logo">
-					<div class="logobox">
-						<img src="./static/img/logo.svg">
+		<div id="app">
+			<!-- 头部导航栏 -->
+			<header>
+				<!-- logo -->
+				<div class="inner">
+					<div class="logo">
+						<div class="logobox">
+							<img src="./static/img/logo.svg">
+						</div>
 					</div>
 				</div>
-			</div>
-			<!-- navigate -->
-			<div class="inner">
-				<div class="navigate">
-					<h1 class="box">首页</h1>
-					<h1 class="box">发现</h1>
-					<h1 class="box">留言</h1>
-				</div>
-			</div>
-			<!-- searchbox -->
-			<div class="inner">
-				<div class="searchbox">
-					<div class="searchbg"></div>
-					<div class="hover">
-						<input type="text" placeholder="搜索留言、热评和一切你感兴趣的">
-						<button class="search_ico"></button>
+				<!-- navigate -->
+				<div class="inner">
+					<div class="navigate">
+						<h1 class="box box-select">首页</h1>
+						<h1 class="box">发现</h1>
+						<h1 class="box">留言</h1>
 					</div>
 				</div>
-			</div>
+				<!-- searchbox -->
+				<div class="inner">
+					<div class="searchbox">
+						<div class="searchbg"></div>
+						<div class="hover">
+							<input type="text" placeholder="搜索留言、热评和一切你感兴趣的">
+							<button class="search_ico"></button>
+						</div>
+					</div>
+				</div>
+				<!-- usercontrol -->
+				<div class="inner">
+					<div class="usercontrol" v-if="isLogin">
+						<div class="avatar">
+							<img src="./static/img/ava1.jpg" alt="avatar" height="45">
 
-			<!-- usercontrol -->
-			<div class="inner">
-				<div class="usercontrol">
-					<div class="avatar">
-						<img src="./static/img/ava1.jpg" alt="avatar" height="45">
-					</div>
-					<div class="alarm">
-						<img src="static/img/alarm.svg" alt="alm" height="30">
-					</div>
-					<div class="msg">
-						<img src="./static/img/msg.png" alt="msg" height="30">
-					</div>
-				</div>
-				<a href="" id="username" style="color:yellow; font-weight:bold; font-size: large;">注册</a>
-			</div>
-		</header>
-
-		<!-- 页面内容 -->
-		<div class="container" id="app">
-			<section>
-				<div class="head">
-					<h2 class="box" style="color: #c62f2f;">关注</h2>
-					<h2 class="box">热榜</h2>
-					<h2 class="box">推荐</h2>
-				</div>
-				<div class="containbox">
-					<div class="card" v-for="(item, index) in reviewList">
-						<div class="drawarea">
-							<div class="top">
-								<img :src="item.avatar" alt="" class="avatar">
-								<p class="nickname">{{item.nickname}}</p>
+							<div class="dropBox">
+								<ul v-for="(item,index) in dropList">
+									<li @click="liBtn(index+1)">◇ {{item.text}}</li>
+								</ul>
 							</div>
-							<div class="content" style="font-size: 20px; padding: 10px;">
-								{{item.context}}
-							</div>
-							<div class="actions">
 
-								<div class="iconItem">
-									<div class="icon">
-										&#xe60a;
-									</div>
-									<p class="text">收藏</p>
-								</div>
-
-								<div class="iconItem">
-									<div class="icon">
-										&#xe600;
-									</div>
-									<p class="text">喜欢</p>
-								</div>
-
-								<div class="iconItem">
-									<div class="icon">
-										&#xe609;
-									</div>
-									<p class="text">评论</p>
-								</div>
-
-
-							</div>
+						</div>
+						<div class="alarm">
+							<img src="static/img/alarm.svg" alt="alm" height="30">
+						</div>
+						<div class="msg">
+							<img src="./static/img/msg.png" alt="msg" height="30">
+						</div>
+					</div>
+					<div class="usercontrol" v-else>
+						<div class="loginBtn" @click="href('./pages/login.html')">
+							<div class="btnText">登 录</div>
 						</div>
 					</div>
 
 				</div>
-			</section>
 
-			<aside>
-			</aside>
+
+			</header>
+
+			<!-- 页面内容 -->
+			<div class="container">
+				<section>
+					<div class="head">
+						<h2 class="box" style="color: #c62f2f;">关注</h2>
+						<h2 class="box">热榜</h2>
+						<h2 class="box">推荐</h2>
+					</div>
+					<div class="containbox">
+						<div class="card" v-for="(item, index) in reviewList">
+							<div class="drawarea">
+								<div class="top">
+									<img :src="item.avatar" alt="" class="avatar">
+									<p class="nickname">{{item.nickname}}</p>
+								</div>
+								<div class="content" style="font-size: 20px; padding: 10px;">
+									{{item.context}}
+								</div>
+								<div class="actions">
+									<div style="display: flex; ">
+										<div class="iconItem" @click="Star(index)" v-if="item.star" style="color: #fab509;">
+											<div class="icon">
+												&#xe61b;
+											</div>
+											<p class="text">收藏</p>
+										</div>
+										<div class="iconItem" @click="Star(index)" v-else>
+											<div class="icon">
+												&#xe60a;
+											</div>
+											<p class="text">收藏</p>
+										</div>
+
+										<div class="iconItem" @click="Like(index)" v-if="item.islike" style="color: #f1543a;">
+											<div class="icon">
+												&#xe601;
+											</div>
+											<p class="text">{{item.like}}</p>
+										</div>
+										<div class="iconItem" @click="Like(index)" v-else>
+											<div class="icon">
+												&#xe600;
+											</div>
+											<p class="text">{{item.like}}</p>
+										</div>
+									</div>
+
+									<div>
+										<div class="iconItem" @click="Comment(index)">
+											<div class="icon">
+												&#xe609;
+											</div>
+											<p class="text">{{item.comment}}</p>
+										</div>
+									</div>
+								</div>
+								<div class="commentbox" v-show="showIndex==index">
+									<div class="title">
+										{{item.comment}}条评论
+									</div>
+									<div class="subTitle">
+										精选评论 ({{item.comment==0?0:item.comment-1}})
+									</div>
+									<div class="commentList" v-for="(citem,index) in item.comment-1">
+										<div class="c-userinfo">
+											<div class="avatar">
+												<img src="./static/img/ava1.jpg" alt="avatar" height="30">
+											</div>
+											<div class="username">
+												昵称{{index+1}}
+											</div>
+										</div>
+
+										<div class="c-context">
+											评论内容{{index+1}}
+										</div>
+									</div>
+									<a class="moreComment" @click="href('./pages/moreComment.html?id='+item.id)">
+										浏览更多评论…
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="no-more">
+							热评到底了~
+						</div>
+					</div>
+				</section>
+				<aside>
+				</aside>
+			</div>
 		</div>
 
 	</body>
@@ -111,16 +164,121 @@
 
 	<script type="module">
 		import review from './data/review.js'
+		import user from './data/userData.js'
 		const app = new Vue({
 			el: '#app',
-			
 			data: {
+				userData:{
+					nickname:'',
+					email:'',
+					pw:'',
+				},
+				isLogin:false,
 				reviewList:[],
+				showIndex:-1,
+				dropList:[
+					{
+						text:'我的收藏',
+						href:'',
+					},
+					{
+						text:'我的信息',
+						href:'',
+					},
+					{
+						text:'退出登录',
+						href:'',
+					}
+				],
+				starList:[],
 			},
 			mounted(){
-				console.log(review)
+				console.log(localStorage.getItem("isLogin"))		
+				if(localStorage.getItem("isLogin")=="false"){
+					this.isLogin = false
+				}else{
+					this.isLogin = true
+				}
 				this.reviewList = review.List
+				if(this.isLogin){
+					this.userData.nickname = localStorage.getItem("username")
+					this.userData.email = localStorage.getItem("email")
+					this.userData.pw = btoa(localStorage.getItem("pw"))
+					this.countStar()
+				}
+			},
+			methods:{
+				Star(index){
+					if(!this.isLogin){
+						let res = confirm("登录后即可收藏~是否现在登录？")
+						if(res){
+							location.href='./pages/login.html'
+						}
+						return
+					}
+					this.reviewList[index].star = !this.reviewList[index].star
+					this.countStar()
+				},
+				countStar(){		
+					this.starList = []
+					for(let item of this.reviewList){
+						if(item.star){
+							this.starList.push(item.id)
+						}
+					}
+				},
+				Like(index){
+					if(this.reviewList[index].islike){
+						this.reviewList[index].like--;
+						this.reviewList[index].islike = !this.reviewList[index].islike
+					}else{
+						this.reviewList[index].like++;
+						this.reviewList[index].islike = !this.reviewList[index].islike
+					}
+				},
+				Comment(index){
+					if(this.showIndex==index)this.showIndex=-1
+					else
+					this.showIndex = index
+				},
+				href(url){
+					alert('定时器模拟响应请求，同时阻塞事件，确认2秒后完成响应')
+					setTimeout(
+						()=>{
+							location.href=url
+						}
+					, 2000);
+				},
+				liBtn(option){
+					switch(option){
+						case 1:
+							console.log(this.starList)
+							let starList = JSON.stringify(this.starList)
+							localStorage.setItem("starList",starList)
+							this.href("./pages/myStar.html")
+						break;
+						case 2:
+							alert(
+								'用户名：'+this.userData.nickname+
+								'\n邮箱：'+this.userData.email+
+								'\n加密密码：'+this.userData.pw
+							)
+						break;
+						case 3:
+							let res = confirm('确认要退出登录吗？')
+							if(res){
+								this.isLogin = false
+								localStorage.setItem('isLogin',false)
+							}
+						break;
+						default:
+						break;
+					}
+					
+				},
+				
 			}
+			
 			
 		})
 		
