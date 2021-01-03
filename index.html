@@ -194,7 +194,7 @@
 			},
 			mounted(){
 				console.log(localStorage.getItem("isLogin"))		
-				if(localStorage.getItem("isLogin")=="false"){
+				if(localStorage.getItem("isLogin")=="false"||localStorage.getItem("isLogin")==null){
 					this.isLogin = false
 				}else{
 					this.isLogin = true
