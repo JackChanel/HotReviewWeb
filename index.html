@@ -228,6 +228,13 @@
 					}
 				},
 				Like(index){
+					if(!this.isLogin){
+						let res = confirm("登录后即可点击喜欢~是否现在登录？")
+						if(res){
+							location.href='./pages/login.html'
+						}
+						return
+					}
 					if(this.reviewList[index].islike){
 						this.reviewList[index].like--;
 						this.reviewList[index].islike = !this.reviewList[index].islike
@@ -237,6 +244,13 @@
 					}
 				},
 				Comment(index){
+					if(!this.isLogin){
+						let res = confirm("登录后即可评论~是否现在登录？")
+						if(res){
+							location.href='./pages/login.html'
+						}
+						return
+					}
 					if(this.showIndex==index)this.showIndex=-1
 					else
 					this.showIndex = index
