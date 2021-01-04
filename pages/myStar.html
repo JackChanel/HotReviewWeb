@@ -16,7 +16,7 @@
 				</div>
 			</div>
 
-			<div class="containbox">
+			<div class="containbox" v-if="starList.length>0">
 				<div class="card" v-for="(item, index) in starList">
 					<div class="top">
 						<img :src="item.avatar" alt="" class="avatar" height="50px">
@@ -25,6 +25,11 @@
 					<div class="content" style="font-size: 20px; padding: 10px;">
 						{{item.context}}
 					</div>
+				</div>
+			</div>
+			<div class="containbox" style="display: flex;" v-else>
+				<div style="margin: auto; font-size: 30px;font-weight: 900;">
+					收 藏 夹 空 空 的 ~
 				</div>
 			</div>
 
@@ -37,7 +42,6 @@
 						animation: fa-spin 5s infinite linear;
 						cursor: pointer;"
 					 src="https://labraff-img.oss-cn-hangzhou.aliyuncs.com/HotReview/Music.png" height="50px" @click="musicControl()">
-
 					<img class="item" src="https://labraff-img.oss-cn-hangzhou.aliyuncs.com/HotReview/explore.png" height="50px">
 					<img class="item" src="https://labraff-img.oss-cn-hangzhou.aliyuncs.com/HotReview/user.png" height="50px">
 					<div class="item">占位</div>
